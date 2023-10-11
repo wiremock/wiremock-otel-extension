@@ -1,0 +1,14 @@
+[versions]
+otel = "1.25.0"
+
+[libraries]
+mockito-kotlin = "org.mockito.kotlin:mockito-kotlin:5.1.0"
+mirometer-tracing = "io.micrometer:micrometer-tracing-bom:1.1.5"
+otel = { module = "io.opentelemetry:opentelemetry-bom", version.ref = "otel" }
+otel-annotations = { module = "io.opentelemetry.instrumentation:opentelemetry-instrumentation-annotations", version.ref = "otel" }
+wiremock = "org.wiremock:wiremock:3.0.4"
+autoservice = "com.google.auto.service:auto-service:1.1.1"
+
+[plugins]
+catalog-update = "nl.littlerobots.version-catalog-update:0.8.1"
+spotless = "com.diffplug.spotless:6.21.0"
