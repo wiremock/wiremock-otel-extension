@@ -1,13 +1,18 @@
 [versions]
+autoservice = "1.1.1"
 otel = "1.25.0"
 
 [libraries]
-mockito-kotlin = "org.mockito.kotlin:mockito-kotlin:5.1.0"
 mirometer-tracing = "io.micrometer:micrometer-tracing-bom:1.1.5"
 otel = { module = "io.opentelemetry:opentelemetry-bom", version.ref = "otel" }
 otel-annotations = { module = "io.opentelemetry.instrumentation:opentelemetry-instrumentation-annotations", version.ref = "otel" }
 wiremock = "org.wiremock:wiremock:3.0.4"
-autoservice = "com.google.auto.service:auto-service:1.1.1"
+autoservice-annotations = {module = "com.google.auto.service:auto-service-annotations", version.ref = "autoservice"}
+autoservice = { module = "com.google.auto.service:auto-service", version.ref = "autoservice"}
+assertj = "org.assertj:assertj-core:3.24.2"
+junit = "org.junit:junit-bom:5.10.0"
+mockito-junit = "org.mockito:mockito-junit-jupiter:5.6.0"
+log4j = "org.apache.logging.log4j:log4j-bom:2.20.0"
 
 [plugins]
 catalog-update = "nl.littlerobots.version-catalog-update:0.8.1"

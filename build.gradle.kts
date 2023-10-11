@@ -13,7 +13,9 @@ repositories {
 }
 
 java {
-
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }
 
 testing {
@@ -78,17 +80,38 @@ dependencies {
     implementation("io.micrometer:micrometer-registry-otlp")
     implementation("io.opentelemetry:opentelemetry-exporter-otlp")
 
-    implementation(libs.autoservice)
+    implementation(libs.autoservice.annotations)
+    annotationProcessor(libs.autoservice)
 
+    testImplementation(platform(libs.junit))
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testImplementation("org.junit.jupiter:junit-jupiter-params")
-    testImplementation("org.assertj:assertj-core")
-    testImplementation("org.mockito:mockito-junit-jupiter")
-    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.assertj)
+    testImplementation(libs.mockito.junit)
+
+    testRuntimeOnly(platform(libs.log4j))
+    testRuntimeOnly("org.apache.logging.log4j:log4j-api")
+    testRuntimeOnly("org.apache.logging.log4j:log4j-core")
+    testRuntimeOnly("org.apache.logging.log4j:log4j-slf4j2-impl")
 
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
 
 spotless {
-
+    java {
+        palantirJavaFormat()
+        removeUnusedImports()
+        toggleOffOn()
+        cleanthat()
+            .addMutator("SafeButNotConsensual")
+            .addMutator("SafeButControversial")
+            .addMutator("LocalVariableTypeInference")
+            // Allow ternary operators
+            .excludeMutator("AvoidInlineConditionals")
+            // Allow comparison with literal last
+            .excludeMutator("LiteralsFirstInComparisons")
+            // This gets very confused with e.g. ISO8601 dates
+            .excludeMutator("UseUnderscoresInNumericLiterals")
+            .sourceCompatibility(java.sourceCompatibility.toString())
+    }
 }
