@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hacktoberfest.wiremock.otel.TracingServeEventListener" tests="1" skipped="0" failures="1" errors="0" timestamp="2023-10-11T11:52:20" hostname="omnius.borismorris.co.uk" time="0.001">
+  <properties/>
+  <testcase name="initializationError" classname="hacktoberfest.wiremock.otel.TracingServeEventListener" time="0.001">
+    <failure message="java.lang.ClassCastException: class hacktoberfest.wiremock.otel.TracingServeEventListener cannot be cast to class com.github.tomakehurst.wiremock.extension.Extension (hacktoberfest.wiremock.otel.TracingServeEventListener and com.github.tomakehurst.wiremock.extension.Extension are in unnamed module of loader 'app')" type="java.lang.ClassCastException">java.lang.ClassCastException: class hacktoberfest.wiremock.otel.TracingServeEventListener cannot be cast to class com.github.tomakehurst.wiremock.extension.Extension (hacktoberfest.wiremock.otel.TracingServeEventListener and com.github.tomakehurst.wiremock.extension.Extension are in unnamed module of loader 'app')
+	at java.base/java.util.stream.Collectors.lambda$uniqKeysMapAccumulator$1(Collectors.java:179)
+	at java.base/java.util.stream.ReduceOps$3ReducingSink.accept(ReduceOps.java:169)
+	at java.base/java.util.AbstractList$RandomAccessSpliterator.forEachRemaining(AbstractList.java:720)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at java.base/java.util.stream.ReferencePipeline$7$1.accept(ReferencePipeline.java:276)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.ServiceLoader$ProviderSpliterator.tryAdvance(ServiceLoader.java:1499)
+	at java.base/java.util.Spliterator.forEachRemaining(Spliterator.java:332)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+	at com.github.tomakehurst.wiremock.extension.Extensions.load(Extensions.java:91)
+	at com.github.tomakehurst.wiremock.core.WireMockApp.&lt;init&gt;(WireMockApp.java:92)
+	at com.github.tomakehurst.wiremock.WireMockServer.&lt;init&gt;(WireMockServer.java:70)
+	at com.github.tomakehurst.wiremock.junit5.WireMockExtension.startServerIfRequired(WireMockExtension.java:162)
+	at com.github.tomakehurst.wiremock.junit5.WireMockExtension.beforeAll(WireMockExtension.java:228)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	Suppressed: java.lang.NullPointerException: Cannot invoke &quot;com.github.tomakehurst.wiremock.WireMockServer.isRunning()&quot; because &quot;this.wireMockServer&quot; is null
+		at com.github.tomakehurst.wiremock.junit5.WireMockExtension.stopServerIfRunning(WireMockExtension.java:216)
+		at com.github.tomakehurst.wiremock.junit5.WireMockExtension.afterAll(WireMockExtension.java:254)
+		... 1 more
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
