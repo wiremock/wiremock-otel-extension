@@ -7,9 +7,9 @@ import com.google.auto.service.AutoService;
 import java.util.List;
 
 @AutoService(ExtensionFactory.class)
-public class TracingServeEventListenerFactory implements ExtensionFactory {
+public class OtelServeEventListenerFactory implements ExtensionFactory {
     @Override
     public List<Extension> create(final WireMockServices services) {
-        return List.of(new TracingServeEventListener());
+        return List.of(new TracingServeEventListener(), new MetricsServeEventListner());
     }
 }

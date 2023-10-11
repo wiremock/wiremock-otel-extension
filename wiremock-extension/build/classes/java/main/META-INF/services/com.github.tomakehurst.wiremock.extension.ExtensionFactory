@@ -1,1 +1,1 @@
-hacktoberfest.wiremock.otel.TracingServeEventListenerFactory
+hacktoberfest.wiremock.otel.OtelServeEventListenerFactory
