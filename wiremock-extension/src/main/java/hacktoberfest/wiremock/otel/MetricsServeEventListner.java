@@ -5,6 +5,9 @@ import com.github.tomakehurst.wiremock.extension.ServeEventListener;
 import com.github.tomakehurst.wiremock.stubbing.ServeEvent;
 import io.micrometer.core.instrument.Clock;
 import io.micrometer.core.instrument.Timer;
+import io.micrometer.core.instrument.binder.jvm.JvmGcMetrics;
+import io.micrometer.core.instrument.binder.jvm.JvmMemoryMetrics;
+import io.micrometer.core.instrument.binder.jvm.JvmThreadMetrics;
 import io.micrometer.core.instrument.push.PushMeterRegistry;
 import io.micrometer.registry.otlp.OtlpConfig;
 import io.micrometer.registry.otlp.OtlpMeterRegistry;
@@ -34,6 +37,10 @@ public class MetricsServeEventListner implements ServeEventListener {
             }
         };
         this.meterRegistry = new OtlpMeterRegistry(config, Clock.SYSTEM);
+
+        new JvmMemoryMetrics().bindTo(meterRegistry);
+        new JvmGcMetrics().bindTo(meterRegistry);
+        new JvmThreadMetrics().bindTo(meterRegistry);
     }
 
     @Override
@@ -43,14 +50,12 @@ public class MetricsServeEventListner implements ServeEventListener {
 
     @Override
     public void afterComplete(final ServeEvent serveEvent, final Parameters parameters) {
-        ServeEventListener.super.afterComplete(serveEvent, parameters);
-
-        Timer.builder("wiremock.request.totaltime")
+        final var timer = Timer.builder("wiremock.request.totaltime")
                 .description("The total request time from start to finish, minus added delay")
                 .tag("stub-name", serveEvent.getStubMapping().getName())
                 .tag("path", serveEvent.getStubMapping().getRequest().getUrlPath())
                 .tag("code", Integer.toString(serveEvent.getResponse().getStatus()))
-                .register(meterRegistry)
-                .record(serveEvent.getTiming().getServeTime(), TimeUnit.MILLISECONDS);
+                .register(meterRegistry);
+        timer.record(serveEvent.getTiming().getServeTime(), TimeUnit.MILLISECONDS);
     }
 }
