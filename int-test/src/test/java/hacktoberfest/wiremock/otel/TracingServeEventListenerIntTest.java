@@ -13,8 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 @WireMockTest
-public class TracingServeEventListener {
-
+public class TracingServeEventListenerIntTest {
     public HttpClient httpClient;
 
     @BeforeEach
